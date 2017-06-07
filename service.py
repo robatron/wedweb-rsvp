@@ -46,3 +46,6 @@ def handle_update():
     resp.headers['Access-Control-Allow-Origin'] = '*'
     
     return resp
+
+if __name__ == "__main__":
+    app.run()
