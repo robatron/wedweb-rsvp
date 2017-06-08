@@ -25,23 +25,17 @@ Relevant http request/response types:
 from flask import Flask, current_app, request
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=['POST'])
 def handle_update():
     #Verify that request came from a human using invis recapcha
-    
-    #Get data from request
-    print 'Request: ' + str(request)
-    print 'Method: ' + request.method
-    print 'Form: ' + str(request.form)
-    print 'Headers: ' + str(request.headers)
-    print 'Url: ' + str(request.url)
-    print 'Args: ' + str(request.args)
-    print 'Stream: ' + str(request.stream)
 
+    #Get data from request
+    form_data = request.form.to_dict()
     
     #Send update to dynamodb
-    #Construct and return response
     
+    
+    #Construct and return response
     resp = current_app.make_default_options_response()
     resp.headers['Access-Control-Allow-Origin'] = '*'
     
