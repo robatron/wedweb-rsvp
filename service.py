@@ -22,7 +22,9 @@ Relevant http request/response types:
 -Throttle dynamodb so that requests don't exceed > some fraction of 1M / month
 """
 
+from db_utils import get_connection
 from flask import Flask, current_app, request
+from boto3 import client
 app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
@@ -33,7 +35,8 @@ def handle_update():
     form_data = request.form.to_dict()
     
     #Send update to dynamodb
-    
+    conn = get_connection()
+    print conn.list_tables()
     
     #Construct and return response
     resp = current_app.make_default_options_response()
